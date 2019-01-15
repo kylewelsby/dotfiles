@@ -151,14 +151,14 @@ fi
 brew_command=`which brew`
 # run "$brew_command update"
 
-for pname in $BREW_PROGRAMS; do
-  echo "# Installing Brew ${pname}"
-  run "${brew_command} list ${pname} || ${brew_command} install ${pname}"
-done
-run "$brew_command cleanup"
+# for pname in $BREW_PROGRAMS; do
+#   echo "# Installing Brew ${pname}"
+#   run "${brew_command} list ${pname} || ${brew_command} install ${pname}"
+# done
+# run "$brew_command cleanup"
 
-echo "# Installing NPM modules"
-run "npm install --global ${NPM_MODULES}"
+# echo "# Installing NPM modules"
+# run "npm install --global ${NPM_MODULES}"
 
 # install bash_it
 echo "# Installing Bash-it"
@@ -176,52 +176,53 @@ set +e
 BASH_IT=~/.bash_it
 run "source $HOME/.bash_it/bash_it.sh"
 set -e
-source ~/.bash_profile
+
+run "bash-it version"
 
 run "bash-it enable alias ${BASH_IT_ALIAS}"
 run "bash-it enable completion ${BASH_IT_COMPLETIONS}"
 run "bash-it enable plugin ${BASH_IT_PLUGINS}"
 
 
-# copy dot files
-for filename in $DOT_FILES; do
-  echo "# Copying ${filename}"
-  from_file="${SCRIPT_PATH}/${filename}"
-  to_file="${HOME}/${filename}"
-  copy_file="cp -a ${from_file} ${to_file}"
-  backup_file="cp -a ${to_file} ${to_file}.backup"
-  if [ -e "${to_file}" ]; then
-    run "$backup_file"
-  fi
-  run "$copy_file"
-  echo
-done
-
-
-# install cask programs
-for pname in $CASK_PROGRAMS; do
- echo "# Installing Brew Cask ${pname}"
- run "brew cask install ${pname}"
-done
-
-
-# install Atom.io packages after `brew cask install atom`
-
-echo "# Installing Atom Community Packages"
-run "apm install ${APM_MODULES}"
-
-
-# lucky guess install App Store applications
-for pname in $APP_STORE_PROGRAMS; do
- echo "# Installing Mac App ${pname}"
- run "mas lucky ${pname}"
-done
-
-
-# Set ~/.ssh/config to 600
-run "chmod 600 $HOME/.ssh/config"
-
-run ".macos"
+# # copy dot files
+# for filename in $DOT_FILES; do
+#   echo "# Copying ${filename}"
+#   from_file="${SCRIPT_PATH}/${filename}"
+#   to_file="${HOME}/${filename}"
+#   copy_file="cp -a ${from_file} ${to_file}"
+#   backup_file="cp -a ${to_file} ${to_file}.backup"
+#   if [ -e "${to_file}" ]; then
+#     run "$backup_file"
+#   fi
+#   run "$copy_file"
+#   echo
+# done
+#
+#
+# # install cask programs
+# for pname in $CASK_PROGRAMS; do
+#  echo "# Installing Brew Cask ${pname}"
+#  run "brew cask install ${pname}"
+# done
+#
+#
+# # install Atom.io packages after `brew cask install atom`
+#
+# echo "# Installing Atom Community Packages"
+# run "apm install ${APM_MODULES}"
+#
+#
+# # lucky guess install App Store applications
+# for pname in $APP_STORE_PROGRAMS; do
+#  echo "# Installing Mac App ${pname}"
+#  run "mas lucky ${pname}"
+# done
+#
+#
+# # Set ~/.ssh/config to 600
+# run "chmod 600 $HOME/.ssh/config"
+#
+# run ".macos"
 
 
 # cleaning up
