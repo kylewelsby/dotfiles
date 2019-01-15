@@ -170,6 +170,7 @@ set +e
 BASH_IT=~/.bash_it
 run "source $HOME/.bash_it/bash_it.sh"
 set -e
+source ~/.bash_profile
 
 run "bash-it enable alias ${BASH_IT_ALIAS}"
 run "bash-it enable completion ${BASH_IT_COMPLETIONS}"
