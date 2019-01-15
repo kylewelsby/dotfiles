@@ -1,18 +1,102 @@
 #!/bin/bash
 
-## Settings
+#### Settings ####
 
 DOT_FILES=".bash_itrc .bash_profile .bashrc .ssh .gitconfig .gitignore.profiles.js .npmrc"
-BREW_PROGRAMS="jq hugo node ssh-copy-id openssl git rbenv ruby-build mas"
-CASK_PROGRAMS="1password alfred atom spectacle caffeine aerial dropbox blisk google-chrome google-photos-backup-and-sync evernote whatsapp cleanmymac bartender music-manager sketch adobe-creative-cloud skype rescuetime the-unarchiver"
-APP_STORE_PROGRAMS="Clean Contrast Xcode Spark Todoist"
-NPM_MODULES="standard outdated gitignorer @vue/cli serverless"
-APM_MODULES="emmet language-gherkin language-graphql language-hugo language-markdown language-vue linter linter-js-standard linter-ui-default pigments sort-lines standard-formatter"
-BASH_IT_ALIAS="general git bundler osx"
-BASH_IT_COMPLETIONS="bash-it brew git npm ssh system rake brew"
-BASH_IT_PLUGINS="extract alias-completion ruby xterm rbenv"
 
-## Settings End
+BREW_PROGRAMS="
+git
+hugo
+jq
+mas
+node
+openssl
+rbenv
+ruby-build
+ssh-copy-id
+"
+
+CASK_PROGRAMS="
+1password
+adobe-creative-cloud
+aerial
+alfred
+atom
+bartender
+blisk
+caffeine
+cleanmymac
+dropbox
+evernote
+google-chrome
+google-photos-backup-and-sync
+music-manager
+rescuetime
+sketch
+skype
+spectacle
+the-unarchiver
+whatsapp
+"
+
+APP_STORE_PROGRAMS="
+Clean
+Contrast
+Spark
+Todoist
+Xcode
+"
+
+NPM_MODULES="
+@vue/cli
+gitignorer
+outdated
+serverless
+standard
+"
+
+APM_MODULES="
+emmet
+language-gherkin
+language-graphql
+language-hugo
+language-markdown
+language-vue
+linter
+linter-js-standard
+linter-ui-default
+pigments
+sort-lines
+standard-formatter
+"
+
+BASH_IT_ALIAS="
+bundler
+general
+git
+osx
+"
+
+BASH_IT_COMPLETIONS="
+bash-it
+brew
+brew
+git
+npm
+rake
+ssh
+system
+"
+
+BASH_IT_PLUGINS="
+extract
+alias-completion
+ruby
+xterm
+rbenv
+"
+
+#### Settings End #####
 
 
 RED='\033[0;31m'
@@ -67,10 +151,8 @@ for pname in $BREW_PROGRAMS; do
 done
 run "$brew_command cleanup"
 
-for pname in $NPM_MODULES; do
- echo "# Installing NPM ${pname}"
- run "npm i -g ${pname}"
-done
+echo "# Installing NPM modules"
+run "npm install --global ${NPM_MODULES}"
 
 # install bash_it
 echo "# Installing Bash-it"
@@ -89,17 +171,9 @@ BASH_IT=~/.bash_it
 run "source $HOME/.bash_it/bash_it.sh"
 set -e
 
-for n in $BASH_IT_ALIAS; do
-  run "bash-it enable alias ${n}"
-done
-
-for n in $BASH_IT_COMPLETIONS; do
-  run "bash-it enable completion ${n}"
-done
-
-for n in $BASH_IT_PLUGINS; do
-  run "bash-it enable plugin ${n}"
-done
+run "bash-it enable alias ${BASH_IT_ALIAS}"
+run "bash-it enable completion ${BASH_IT_COMPLETIONS}"
+run "bash-it enable plugin ${BASH_IT_PLUGINS}"
 
 
 # copy dot files
@@ -125,10 +199,9 @@ done
 
 
 # install Atom.io packages after `brew cask install atom`
-for pname in $APM_MODULES; do
- echo "# Installing Atom Community Packages ${pname}"
- run "apm install ${pname}"
-done
+
+echo "# Installing Atom Community Packages"
+run "apm install ${APM_MODULES}"
 
 
 # lucky guess install App Store applications
