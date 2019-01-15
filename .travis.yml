@@ -5,4 +5,5 @@
 # script:
 #   - docker run dotfiles
 os: osx
+language: minimal
 script: ./install

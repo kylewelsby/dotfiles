@@ -7,6 +7,7 @@ BREW_PROGRAMS="jq hugo node ssh-copy-id openssl git rbenv ruby-build mas"
 CASK_PROGRAMS="1password alfred atom spectacle caffeine aerial dropbox blisk google-chrome google-photos-backup-and-sync evernote whatsapp cleanmymac bartender music-manager sketch adobe-creative-cloud skype rescuetime"
 APP_STORE_PROGRAMS="Clean Contrast Xcode Spark Todoist"
 NPM_MODULES="standard outdated gitignorer @vue/cli serverless"
+APM_MODULES="emmet language-gherkin language-graphql language-hugo language-markdown language-vue linter linter-js-standard linter-ui-default pigments sort-lines standard-formatter"
 BASH_IT_ALIAS="general git bundler osx"
 BASH_IT_COMPLETIONS="bash-it brew git npm ssh system rake brew"
 BASH_IT_PLUGINS="extract alias-completion ruby xterm rbenv"
@@ -64,10 +65,16 @@ for pname in $BREW_PROGRAMS; do
   echo "# Installing Brew ${pname}"
   run "${brew_command} list ${pname} || ${brew_command} install ${pname}"
 done
+run "$brew_command cleanup"
 
 for pname in $NPM_MODULES; do
  echo "# Installing NPM ${pname}"
  run "npm i -g ${pname}"
+done
+
+for pname in $APM_MODULES; do
+ echo "# Installing Atom Community Packages ${pname}"
+ run "apm install ${pname}"
 done
 
 # install bash_it
