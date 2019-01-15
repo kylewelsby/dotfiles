@@ -1,0 +1,136 @@
+#!/bin/bash
+
+## Settings
+
+DOT_FILES=".bash_itrc .bash_profile .bashrc .ssh .gitconfig .gitignore.profiles.js .npmrc"
+BREW_PROGRAMS="jq hugo node ssh-copy-id openssl git rbenv ruby-build mas"
+CASK_PROGRAMS="1password alfred atom spectacle caffeine aerial dropbox blisk google-chrome google-photos-backup-and-sync evernote whatsapp cleanmymac bartender music-manager sketch adobe-creative-cloud skype rescuetime"
+APP_STORE_PROGRAMS="Clean Contrast Xcode Spark Todoist"
+NPM_MODULES="standard outdated gitignorer @vue/cli serverless"
+BASH_IT_ALIAS="general git bundler osx"
+BASH_IT_COMPLETIONS="bash-it brew git npm ssh system rake brew"
+BASH_IT_PLUGINS="extract alias-completion ruby xterm rbenv"
+
+## Settings End
+
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+SCRIPT_PATH="`dirname \"$0\"`"
+
+# Abort on error
+set -e
+
+if [ "$1" == "--dry-run" ]; then
+  echo "Dry run mode..."; echo
+  DRY_RUN=1
+fi
+
+function run {
+  echo "  > $1"
+  if [ -z "$DRY_RUN" ]; then
+    eval $1
+  fi
+}
+
+function find_command {
+  command -v git >/dev/null 2>&1 || {
+    echo >&2 "git is required for this installation but can not be found.  Aborting.";
+    exit 1;
+  }
+  echo `command -v $1`
+}
+
+# Check for git
+git_command=`find_command git`
+# Check for curl
+curl_command=`find_command curl`
+# Check for ruby
+ruby_command=`find_command ruby`
+
+
+# Install homebrew
+which brew
+if [[ $? != 0 ]]; then
+  echo "# Installing Homebrew"
+  brew_install='/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+  run "$brew_install"
+fi
+
+brew_command=`which brew`
+run "$brew_command update"
+
+for pname in $BREW_PROGRAMS; do
+  echo "# Installing Brew ${pname}"
+  run "${brew_command} list ${pname} || ${brew_command} install ${pname}"
+done
+
+for pname in $NPM_MODULES; do
+ echo "# Installing NPM ${pname}"
+ run "npm i -g ${pname}"
+done
+
+# install bash_it
+echo "# Installing Bash-it"
+bash_it_git="Bash-it/bash-it"
+bash_it_location="${HOME}/.bash_it"
+bash_it_clone="$git_command clone --depth=1 https://github.com/$bash_it_git.git ${bash_it_location}"
+bash_it_install="${HOME}/.bash_it/install.sh --silent"
+if [ ! -d $bash_it_location ]; then
+  run "rm -rf ${bash_it_location}"
+  run "$bash_it_clone"
+  run "$bash_it_install"
+fi
+
+set +e
+BASH_IT=~/.bash_it
+run "source $HOME/.bash_it/bash_it.sh"
+set -e
+
+for n in $BASH_IT_ALIAS; do
+  run "bash-it enable alias ${n}"
+done
+
+for n in $BASH_IT_COMPLETIONS; do
+  run "bash-it enable completion ${n}"
+done
+
+for n in $BASH_IT_PLUGINS; do
+  run "bash-it enable plugin ${n}"
+done
+
+
+
+# copy dot files
+for filename in $DOT_FILES; do
+  echo "# Copying ${filename}"
+  from_file="${SCRIPT_PATH}/${filename}"
+  to_file="${HOME}/${filename}"
+  copy_file="cp -a ${from_file} ${to_file}"
+  backup_file="cp -a ${to_file} ${to_file}.backup"
+  if [ -e "${to_file}" ]; then
+    run "$backup_file"
+  fi
+  run "$copy_file"
+  echo
+done
+
+for pname in $CASK_PROGRAMS; do
+ echo "# Installing Brew Cask ${pname}"
+ run "brew cask install ${pname}"
+done
+
+for pname in $APP_STORE_PROGRAMS; do
+ echo "# Installing Mac App ${pname}"
+ run "mas lucky ${pname}"
+done
+
+
+# Set ~/.ssh/config to 600
+run "chmod 600 $HOME/.ssh/config"
+
+run ".macos"
+
+
+# cleaning up
+echo -e "\n${RED}Please relogin to see changes.${NC}"

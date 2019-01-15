@@ -1,0 +1,18 @@
+[user]
+  name = Kyle Welsby
+  email = kyle@mekyle.com
+  signingkey = 7174F463
+[commit]
+  gpgsign = true
+[alias]
+  ci = commit
+  st = status
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
+  who = shortlog -s --
+  track = !sh -c 'git branch --track "$1" "$0/$1" && git checkout "$1"' # git track origin branch <-- remotes/origin/branch
+  l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+[push]
+  default = simple
