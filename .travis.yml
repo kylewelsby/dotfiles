@@ -5,5 +5,6 @@
 # script:
 #   - docker run dotfiles
 os: osx
+osx_image: xcode10.1
 language: minimal
 script: ./install
