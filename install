@@ -4,7 +4,7 @@
 
 DOT_FILES=".bash_itrc .bash_profile .bashrc .ssh .gitconfig .gitignore.profiles.js .npmrc"
 BREW_PROGRAMS="jq hugo node ssh-copy-id openssl git rbenv ruby-build mas"
-CASK_PROGRAMS="1password alfred atom spectacle caffeine aerial dropbox blisk google-chrome google-photos-backup-and-sync evernote whatsapp cleanmymac bartender music-manager sketch adobe-creative-cloud skype rescuetime"
+CASK_PROGRAMS="1password alfred atom spectacle caffeine aerial dropbox blisk google-chrome google-photos-backup-and-sync evernote whatsapp cleanmymac bartender music-manager sketch adobe-creative-cloud skype rescuetime the-unarchiver"
 APP_STORE_PROGRAMS="Clean Contrast Xcode Spark Todoist"
 NPM_MODULES="standard outdated gitignorer @vue/cli serverless"
 APM_MODULES="emmet language-gherkin language-graphql language-hugo language-markdown language-vue linter linter-js-standard linter-ui-default pigments sort-lines standard-formatter"
@@ -72,11 +72,6 @@ for pname in $NPM_MODULES; do
  run "npm i -g ${pname}"
 done
 
-for pname in $APM_MODULES; do
- echo "# Installing Atom Community Packages ${pname}"
- run "apm install ${pname}"
-done
-
 # install bash_it
 echo "# Installing Bash-it"
 bash_it_git="Bash-it/bash-it"
@@ -107,7 +102,6 @@ for n in $BASH_IT_PLUGINS; do
 done
 
 
-
 # copy dot files
 for filename in $DOT_FILES; do
   echo "# Copying ${filename}"
@@ -122,11 +116,22 @@ for filename in $DOT_FILES; do
   echo
 done
 
+
+# install cask programs
 for pname in $CASK_PROGRAMS; do
  echo "# Installing Brew Cask ${pname}"
  run "brew cask install ${pname}"
 done
 
+
+# install Atom.io packages after `brew cask install atom`
+for pname in $APM_MODULES; do
+ echo "# Installing Atom Community Packages ${pname}"
+ run "apm install ${pname}"
+done
+
+
+# lucky guess install App Store applications
 for pname in $APP_STORE_PROGRAMS; do
  echo "# Installing Mac App ${pname}"
  run "mas lucky ${pname}"
