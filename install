@@ -59,7 +59,7 @@ if [[ $? != 0 ]]; then
 fi
 
 brew_command=`which brew`
-run "$brew_command update"
+# run "$brew_command update"
 
 for pname in $BREW_PROGRAMS; do
   echo "# Installing Brew ${pname}"
