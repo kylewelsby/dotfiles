@@ -200,7 +200,7 @@ for filename in $DOT_FILES; do
   run "$copy_file"
 done
 
-run "reset"
+run ". ~/.bashrc"
 
 run "bash-it enable alias ${BASH_IT_ALIAS}"
 run "bash-it enable completion ${BASH_IT_COMPLETIONS}"
