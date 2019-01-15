@@ -201,6 +201,8 @@ for filename in $DOT_FILES; do
 done
 
 run ". ~/.bashrc"
+run "tset"
+run "reset"
 
 run "bash-it enable alias ${BASH_IT_ALIAS}"
 run "bash-it enable completion ${BASH_IT_COMPLETIONS}"
