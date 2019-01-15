@@ -165,7 +165,7 @@ echo "# Installing Bash-it"
 bash_it_git="Bash-it/bash-it"
 bash_it_location="${HOME}/.bash_it"
 bash_it_clone="$git_command clone --depth=1 https://github.com/$bash_it_git.git ${bash_it_location}"
-bash_it_install="${HOME}/.bash_it/install.sh --silent"
+bash_it_install="${HOME}/.bash_it/install.sh --silent --no-modify-config"
 if [ ! -d $bash_it_location ]; then
   run "rm -rf ${bash_it_location}"
   run "$bash_it_clone"
@@ -177,11 +177,15 @@ BASH_IT=~/.bash_it
 run "source $HOME/.bash_it/bash_it.sh"
 set -e
 
-run "bash-it version"
-
-run "bash-it enable alias ${BASH_IT_ALIAS}"
-run "bash-it enable completion ${BASH_IT_COMPLETIONS}"
-run "bash-it enable plugin ${BASH_IT_PLUGINS}"
+for pname in $BASH_IT_ALIAS; do
+  run "_enable-alias ${pname}"
+done
+for pname in $BASH_IT_COMPLETIONS; do
+  run "_enable-completion ${pname}"
+done
+for pname in $BASH_IT_PLUGINS; do
+  run "_enable-plugin ${pname}"
+done
 
 
 # # copy dot files
