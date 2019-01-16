@@ -203,6 +203,10 @@ done
 run ". ~/.bashrc"
 run "tset"
 run "reset"
+run "bash --login -c"
+echo $0
+echo $@
+echo "Continue script"
 
 run "bash-it enable alias ${BASH_IT_ALIAS}"
 run "bash-it enable completion ${BASH_IT_COMPLETIONS}"
