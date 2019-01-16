@@ -2,6 +2,7 @@
 
 #### Settings ####
 
+COMPUTER_NAME="MeKyle-osx"
 DOT_FILES="
 .aws
 .bash_itrc
@@ -9,6 +10,7 @@ DOT_FILES="
 .bashrc
 .gitconfig
 .gitignore.profiles.js
+.inputrc
 .npmrc
 .ssh
 "
@@ -129,69 +131,30 @@ curl_command=`find_command curl`
 # Check for ruby
 ruby_command=`find_command ruby`
 
-
-# Install homebrew
-which brew
-if [[ $? != 0 ]]; then
-  echo "# Installing Homebrew"
-  brew_install='/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-  run "$brew_install"
-fi
-
-brew_command=`which brew`
-# run "$brew_command update"
-
-# for pname in $BREW_PROGRAMS; do
-#   echo "# Installing Brew ${pname}"
-#   run "${brew_command} list ${pname} || ${brew_command} install ${pname}"
-# done
-# run "$brew_command cleanup"
-
-# echo "# Installing NPM modules"
-# run "npm install --global ${NPM_MODULES}"
-
 source ./lib/bash-it.bash
 
+source ./lib/brew.bash
+source ./lib/brew-cask.bash
 
-# copy dot files
-# for filename in $DOT_FILES; do
-#   echo "# Copying ${filename}"
-#   from_file="${SCRIPT_PATH}/${filename}"
-#   to_file="${HOME}/${filename}"
-#   copy_file="cp -a ${from_file} ${to_file}"
-#   backup_file="cp -a ${to_file} ${to_file}.backup"
-#   if [ -e "${to_file}" ]; then
-#     run "$backup_file"
-#   fi
-#   run "$copy_file"
-# done
+source ./lib/npm.bash
+source ./lib/apm.bash
 
+source ./lib/mac-app-store.bash
 
-#
-#
-# # install cask programs
-# for pname in $CASK_PROGRAMS; do
-#  echo "# Installing Brew Cask ${pname}"
-#  run "brew cask install ${pname}"
-# done
-#
-#
-# # install Atom.io packages after `brew cask install atom`
-#
-# echo "# Installing Atom Community Packages"
-# run "apm install ${APM_MODULES}"
-#
-#
-# # lucky guess install App Store applications
-# for pname in $APP_STORE_PROGRAMS; do
-#  echo "# Installing Mac App ${pname}"
-#  run "mas lucky ${pname}"
-# done
-#
-#
-# # Set ~/.ssh/config to 600
-# run "chmod 600 $HOME/.ssh/config"
-#
+for filename in $DOT_FILES; do
+  echo "# Copying ${filename}"
+  from_file="${SCRIPT_PATH}/${filename}"
+  to_file="${HOME}/${filename}"
+  copy_file="cp -a ${from_file} ${to_file}"
+  backup_file="cp -a ${to_file} ${to_file}.backup"
+  if [ -e "${to_file}" ]; then
+    run "$backup_file"
+  fi
+  run "$copy_file"
+done
+
+Set ~/.ssh/config to 600
+
 # run ".macos"
 
 
