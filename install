@@ -150,7 +150,6 @@ brew_command=`which brew`
 # echo "# Installing NPM modules"
 # run "npm install --global ${NPM_MODULES}"
 
-# install bash_it
 source ./lib/bash-it.bash
 
 

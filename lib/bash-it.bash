@@ -6,15 +6,17 @@ bash_it_git="Bash-it/bash-it"
 bash_it_location="${HOME}/.bash_it"
 bash_it_clone="$git_command clone --depth=1 https://github.com/$bash_it_git.git ${bash_it_location}"
 bash_it_install="${HOME}/.bash_it/install.sh --silent --no-modify-config"
+
 if [ ! -d $bash_it_location ]; then
-  echo "# Installing Bash-it"
+  echo -e "\033[0;32mInstalling Bash-it\033[0m"
   run "rm -rf ${bash_it_location}"
   run "$bash_it_clone"
   run "$bash_it_install"
-
 fi
 
-echo "# Enabling Bash-it aliases, completions, and plugins"
+BASH_IT="${HOME}/.bash_it"
+echo -e "\033[0;32mEnabling Bash-it aliases, completions, and plugins\033[0m"
+
 source ${bash_it_location}/lib/composure.bash
 source ${bash_it_location}/lib/utilities.bash
 cite _about _param _example _group _author _version
