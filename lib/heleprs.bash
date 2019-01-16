@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-if [ "$1" == "--dry-run" ]; then
-  echo "Dry run mode..."; echo
-  DRY_RUN=1
-fi
+# if [ "$1" == "--dry-run" ]; then
+#   echo "Dry run mode..."; echo
+#   DRY_RUN=1
+# fi
 
 function run {
   echo "  > $1"
-  if [ -z "$DRY_RUN" ]; then
+  if [ -z "$dry_run" ]; then
     eval $1
   fi
 }

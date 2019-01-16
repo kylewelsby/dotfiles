@@ -11,14 +11,11 @@ Automation install script inspired by [Jason Yu](https://github.com/ycmjason/dot
 ## 🎲 Installation
 
     git clone --depth=1 https://github.com/kylewelsby/dotfiles ~/.dotfiles
-    ~/.dotfiles/install
+    ~/.dotfiles/install.sh
 
 ## 🤖 Testing
 
-This project uses docker to run the `install` script.
-
-    docker build -t dotfiles .
-    docker run dotfiles
+Well, about that.  At the moment, to test this we need to run the script on our own machine. 
 
 ## 🎓 License
 
