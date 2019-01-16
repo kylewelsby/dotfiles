@@ -14,7 +14,8 @@ if [ ! -d $bash_it_location ]; then
   run "$bash_it_install"
 fi
 
-BASH_IT="${HOME}/.bash_it"
+export BASH_IT=~/.bash_it
+
 echo -e "\033[0;32mEnabling Bash-it aliases, completions, and plugins\033[0m"
 
 source ${bash_it_location}/lib/composure.bash
