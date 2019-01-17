@@ -122,6 +122,7 @@ enable_dot_files=true
 enable_mac_defaults=true
 enable_apt=true
 enable_npm=true
+enable_projects=true
 
 #### Settings End #####
 
@@ -147,6 +148,7 @@ function show_usage() {
   echo "--no-apm (-a): Disable Atom.io package manager"
   echo "--no-npm (-n): Disable Node package manager"
   echo "--no-bash-it (-i): Disable Bash.it"
+  echo "--no-projects (-p): Disable git checkout for projects"
   exit 0;
 }
 
@@ -164,13 +166,14 @@ for param in "$@"; do
     "--no-mac-defaults")    set -- "$@" "-d" ;;
     "--no-apm")             set -- "$@" "-a" ;;
     "--no-npm")             set -- "$@" "-n" ;;
+    "--no-projects")             set -- "$@" "-p" ;;
     "--dry-run")            set -- "$@" "-r" ;;
     *)                      set -- "$@" "$param"
   esac
 done
 
 OPTIND=1
-while getopts "hmncfdarbi" opt
+while getopts "hmncfdarbip" opt
 do
   case "$opt" in
   "h") show_usage; exit 0 ;;
@@ -183,6 +186,7 @@ do
   "d") enable_mac_defaults=false ;;
   "a") enable_apm=false ;;
   "n") enable_npm=false ;;
+  "p") enable_projects=false ;;
   "?") show_usage >&2; exit 1 ;;
   esac
 done
@@ -241,6 +245,10 @@ fi
 
 if [ "$enable_mac_defaults" = true ]; then
   source ./lib/macos-defaults.bash
+fi
+
+if [ "$enable_projects" = true ]; then
+  source ./lib/projects.bash
 fi
 
 # cleaning up
