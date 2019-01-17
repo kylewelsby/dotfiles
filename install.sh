@@ -114,11 +114,14 @@ xterm
 rbenv
 "
 
+enable_bash_it=true
+enable_homebrew=true
 enable_app_store=true
 enable_brew_cask=true
 enable_dot_files=true
 enable_mac_defaults=true
 enable_apt=true
+enable_npm=true
 
 #### Settings End #####
 
@@ -136,12 +139,14 @@ function show_usage() {
   echo -e "Usage:\n$0 [arguments] \n"
   echo "Arguments:"
   echo "--help (-h): Display this help message"
-  echo "--dry-run (-n): Dry run, don't run any commands";
-  echo "--no-app-store (-m): Disables Mac App Store"
-  echo "--no-brew-cask (-c): Disables Brew Cask Applications"
-  echo "--no-modify-config (-f): Disables copying of config files"
-  echo "--no-mac-defaults (-d): Disables default mac settings"
-  echo "--no-apm (-a): Disables Atom.io package manager"
+  echo "--dry-run (-r): Dry run, don't run any commands";
+  echo "--no-app-store (-m): Disable Mac App Store"
+  echo "--no-brew-cask (-c): Disable Brew Cask Applications"
+  echo "--no-modify-config (-f): Disable copying of config files"
+  echo "--no-mac-defaults (-d): Disable default mac settings"
+  echo "--no-apm (-a): Disable Atom.io package manager"
+  echo "--no-npm (-n): Disable Node package manager"
+  echo "--no-bash-it (-i): Disable Bash.it"
   exit 0;
 }
 
@@ -151,27 +156,33 @@ for param in "$@"; do
   shift
   case "$param" in
     "--help")               set -- "$@" "-h" ;;
+    "--no-bash-it")         set -- "$@" "-i" ;;
     "--no-app-store")       set -- "$@" "-m" ;;
+    "--no-brew")            set -- "$@" "-b" ;;
     "--no-brew-cask")       set -- "$@" "-c" ;;
     "--no-modify-config")   set -- "$@" "-f" ;;
     "--no-mac-defaults")    set -- "$@" "-d" ;;
-    "--no-apm")    set -- "$@" "-a" ;;
-    "--dry-run")            set -- "$@" "-n" ;;
+    "--no-apm")             set -- "$@" "-a" ;;
+    "--no-npm")             set -- "$@" "-n" ;;
+    "--dry-run")            set -- "$@" "-r" ;;
     *)                      set -- "$@" "$param"
   esac
 done
 
 OPTIND=1
-while getopts "hmncfda" opt
+while getopts "hmncfdarbi" opt
 do
   case "$opt" in
   "h") show_usage; exit 0 ;;
-  "n") dry_run=true ;;
+  "r") dry_run=true ;;
+  "i") enable_bash_it=false ;;
   "m") enable_app_store=false ;;
+  "b") enable_homebrew=false ;;
   "c") enable_brew_cask=false ;;
   "f") enable_dot_files=false ;;
   "d") enable_mac_defaults=false ;;
   "a") enable_apm=false ;;
+  "n") enable_npm=false ;;
   "?") show_usage >&2; exit 1 ;;
   esac
 done
@@ -184,15 +195,21 @@ curl_command=`find_command curl`
 # Check for ruby
 ruby_command=`find_command ruby`
 
-source ./lib/bash-it.bash
+if [ "$enable_bash_it" = true ]; then
+  source ./lib/bash-it.bash
+fi
 
-source ./lib/brew.bash
+if [ "$enable_homebrew" = true ]; then
+  source ./lib/brew.bash
+fi
 
 if [ "$enable_brew_cask" = true ]; then
   source ./lib/brew-cask.bash
 fi
 
-source ./lib/npm.bash
+if [ "$enable_npm" = true ]; then
+  source ./lib/npm.bash
+fi
 
 if [ "$enable_apm" = true ]; then
   source ./lib/apm.bash
@@ -221,7 +238,6 @@ fi
 if [ "$enable_mac_defaults" = true ]; then
   source ./lib/macos-defaults.bash
 fi
-
 
 # cleaning up
 echo -e "\n${RED}Please relogin to see changes.${NC}"

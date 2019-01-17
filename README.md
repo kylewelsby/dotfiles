@@ -13,9 +13,24 @@ Automation install script inspired by [Jason Yu](https://github.com/ycmjason/dot
     git clone --depth=1 https://github.com/kylewelsby/dotfiles ~/.dotfiles
     ~/.dotfiles/install.sh
 
+## 🛠 Useage
+
+    Usage:
+    ./install.sh [arguments]
+
+    Arguments:
+    --help (-h): Display this help message
+    --dry-run (-r): Dry run, don't run any commands
+    --no-app-store (-m): Disable Mac App Store
+    --no-brew-cask (-c): Disable Brew Cask Applications
+    --no-modify-config (-f): Disable copying of config files
+    --no-mac-defaults (-d): Disable default mac settings
+    --no-apm (-a): Disable Atom.io package manager
+    --no-npm (-n): Disable Node package manager
+
 ## 🤖 Testing
 
-Well, about that.  At the moment, to test this we need to run the script on our own machine. 
+Well, about that.  At the moment, to test this we need to run the script on our own machine.
 
 ## 🎓 License
 
