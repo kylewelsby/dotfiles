@@ -114,6 +114,12 @@ xterm
 rbenv
 "
 
+enable_app_store=true
+enable_brew_cask=true
+enable_dot_files=true
+enable_mac_defaults=true
+enable_apt=true
+
 #### Settings End #####
 
 
@@ -135,13 +141,11 @@ function show_usage() {
   echo "--no-brew-cask (-c): Disables Brew Cask Applications"
   echo "--no-modify-config (-f): Disables copying of config files"
   echo "--no-mac-defaults (-d): Disables default mac settings"
+  echo "--no-apm (-a): Disables Atom.io package manager"
   exit 0;
 }
 
-enable_app_store=true
-enable_brew_cask=true
-enable_dot_files=true
-enable_mac_defaults=true
+
 
 for param in "$@"; do
   shift
@@ -151,13 +155,14 @@ for param in "$@"; do
     "--no-brew-cask")       set -- "$@" "-c" ;;
     "--no-modify-config")   set -- "$@" "-f" ;;
     "--no-mac-defaults")    set -- "$@" "-d" ;;
+    "--no-apm")    set -- "$@" "-a" ;;
     "--dry-run")            set -- "$@" "-n" ;;
     *)                      set -- "$@" "$param"
   esac
 done
 
 OPTIND=1
-while getopts "hmncfd" opt
+while getopts "hmncfda" opt
 do
   case "$opt" in
   "h") show_usage; exit 0 ;;
@@ -166,6 +171,7 @@ do
   "c") enable_brew_cask=false ;;
   "f") enable_dot_files=false ;;
   "d") enable_mac_defaults=false ;;
+  "a") enable_apm=false ;;
   "?") show_usage >&2; exit 1 ;;
   esac
 done
@@ -187,7 +193,10 @@ if [ "$enable_brew_cask" = true ]; then
 fi
 
 source ./lib/npm.bash
-source ./lib/apm.bash
+
+if [ "$enable_apm" = true ]; then
+  source ./lib/apm.bash
+fi
 
 if [ "$enable_app_store" = true ]; then
   source ./lib/mac-app-store.bash
