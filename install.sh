@@ -220,6 +220,8 @@ if [ "$enable_app_store" = true ]; then
 fi
 
 if [ "$enable_dot_files" = true ]; then
+  echo -e "\033[0;32mCopying dotfiles\033[0m"
+
   for filename in $DOT_FILES; do
     echo "# Copying ${filename}"
     from_file="${SCRIPT_PATH}/${filename}"
@@ -232,7 +234,9 @@ if [ "$enable_dot_files" = true ]; then
     run "$copy_file"
   done
 
-  chmod 600 ~/.ssh/config
+  if [ -f ~/.ssh/config ]; then
+    chmod 600 ~/.ssh/config
+  fi
 fi
 
 if [ "$enable_mac_defaults" = true ]; then
