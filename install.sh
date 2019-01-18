@@ -41,6 +41,7 @@ caffeine
 cleanmymac
 dropbox
 evernote
+flux
 google-chrome
 google-photos-backup-and-sync
 grammarly
