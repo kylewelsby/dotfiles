@@ -95,6 +95,10 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool FALSE
 
+sudo chown root ~/Library/Preferences/ByHost/com.apple.loginwindow*
+sudo chmod 000 ~/Library/Preferences/ByHost/com.apple.loginwindow*
+
+
 # Restart automatically if the computer freezes
 sudo systemsetup -setrestartfreeze on
 
