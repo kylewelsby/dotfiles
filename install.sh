@@ -62,11 +62,10 @@ whatsapp
 "
 
 APP_STORE_PROGRAMS="
-Clean
-Contrast
-Spark
-Todoist
-Xcode
+418412301
+1254981365
+1176895641
+585829637
 "
 
 NPM_MODULES="
