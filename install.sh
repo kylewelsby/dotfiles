@@ -46,15 +46,18 @@ google-chrome
 google-photos-backup-and-sync
 grammarly
 imageoptim
+keybase
 krisp
 music-manager
 muzzle
 numi
+postman
 rescuetime
 sketch
 skype
 spectacle
 the-unarchiver
+transmit
 whatsapp
 "
 
