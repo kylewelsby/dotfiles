@@ -1,7 +1,7 @@
 [user]
   name = Kyle Welsby
   email = kyle@mekyle.com
-  signingkey = 7174F463
+  signingkey = AEE59E1B8CCD1C8D
 [commit]
   gpgsign = true
 [alias]
@@ -16,3 +16,5 @@
   l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 [push]
   default = simple
+[gpg]
+	program = /usr/local/bin/gpg

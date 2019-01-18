@@ -18,6 +18,7 @@ DOT_FILES="
 
 BREW_PROGRAMS="
 git
+gnupg
 hugo
 jq
 mas
@@ -44,6 +45,7 @@ evernote
 flux
 google-chrome
 google-photos-backup-and-sync
+gpg-suite
 grammarly
 imageoptim
 keybase
@@ -57,6 +59,7 @@ sketch
 skype
 spectacle
 the-unarchiver
+tower
 transmit
 whatsapp
 "
