@@ -9,6 +9,7 @@ DOT_FILES="
 .bash_itrc
 .bash_profile
 .bashrc
+.bundle
 .gitconfig
 .gitignore.profiles.js
 .inputrc
@@ -55,6 +56,7 @@ muzzle
 numi
 postman
 rescuetime
+rocket
 sketch
 skype
 spectacle
@@ -126,7 +128,7 @@ enable_app_store=true
 enable_brew_cask=true
 enable_dot_files=true
 enable_mac_defaults=true
-enable_apt=true
+enable_apm=true
 enable_npm=true
 enable_projects=true
 
@@ -222,6 +224,7 @@ if [ "$enable_npm" = true ]; then
 fi
 
 if [ "$enable_apm" = true ]; then
+  echo 'hi'
   source ./lib/apm.bash
 fi
 
