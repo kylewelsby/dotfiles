@@ -19,4 +19,6 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL="en_US.utf-8"
 export LANG="$LC_ALL"
 
+export GPG_TTY=$(tty)
+
 export EDITOR="/usr/local/bin/atom -nw"

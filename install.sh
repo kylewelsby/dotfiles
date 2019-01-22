@@ -28,6 +28,7 @@ openssl
 rbenv
 ruby-build
 ssh-copy-id
+gpg
 "
 
 CASK_PROGRAMS="
