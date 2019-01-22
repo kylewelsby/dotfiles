@@ -95,8 +95,15 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool FALSE
 
+# Disable launching of applications on launch
+defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+defaults write com.apple.loginwindow TALLogoutSavesState -bool false
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
+find ~/Library/Preferences/ByHost/ -name 'com.apple.loginwindow*' ! -size 0 -exec tee {} \; < /dev/null
 sudo chown root ~/Library/Preferences/ByHost/com.apple.loginwindow*
 sudo chmod 000 ~/Library/Preferences/ByHost/com.apple.loginwindow*
+find ~/Library/Preferences/ByHost/ -name 'com.apple.loginwindow*' -exec chflags uimmutable {} \;
 
 
 # Restart automatically if the computer freezes
