@@ -27,6 +27,8 @@ Automation install script inspired by [Jason Yu](https://github.com/ycmjason/dot
     --no-mac-defaults (-d): Disable default mac settings
     --no-apm (-a): Disable Atom.io package manager
     --no-npm (-n): Disable Node package manager
+    --no-bash-it (-i): Disable Bash.it
+    --no-projects (-p): Disable git checkout for projects
 
 ## 🤖 Testing
 
