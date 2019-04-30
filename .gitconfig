@@ -15,6 +15,6 @@
   track = !sh -c 'git branch --track "$1" "$0/$1" && git checkout "$1"' # git track origin branch <-- remotes/origin/branch
   l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 [push]
-  default = simple
+  default = current
 [gpg]
 	program = /usr/local/bin/gpg
