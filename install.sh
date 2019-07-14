@@ -37,9 +37,7 @@ adobe-creative-cloud
 aerial
 alfred
 atom
-avast-secureline-vpn
 bartender
-blisk
 caffeine
 cleanmymac
 dropbox
