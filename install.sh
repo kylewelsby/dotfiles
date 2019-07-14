@@ -48,6 +48,8 @@ google-photos-backup-and-sync
 gpg-suite
 grammarly
 imageoptim
+iterm2
+java
 keybase
 krisp
 music-manager
@@ -65,6 +67,7 @@ tower
 transmit
 whatsapp
 yakyak
+yarn
 "
 
 APP_STORE_PROGRAMS="
@@ -80,6 +83,7 @@ gitignorer
 outdated
 serverless
 standard
+firebase-tools
 "
 
 APM_MODULES="
