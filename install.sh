@@ -29,6 +29,7 @@ rbenv
 ruby-build
 ssh-copy-id
 gpg
+watchman
 "
 
 CASK_PROGRAMS="
