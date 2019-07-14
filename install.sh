@@ -59,10 +59,12 @@ rocket
 sketch
 skype
 spectacle
+telegram
 the-unarchiver
 tower
 transmit
 whatsapp
+yakyak
 "
 
 APP_STORE_PROGRAMS="
