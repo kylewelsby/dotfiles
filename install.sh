@@ -53,6 +53,7 @@ iterm2
 java
 keybase
 krisp
+klokki
 music-manager
 muzzle
 numi
