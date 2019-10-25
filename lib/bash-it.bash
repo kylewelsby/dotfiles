@@ -8,10 +8,8 @@
 
 source ./lib/heleprs.bash
 
-# bash_it_git="Bash-it/bash-it"
-# bash_it_branch="master"
-bash_it_git="kylewelsby/bash-it"
-bash_it_branch="bugfix/missing-tmp-cache-exit-1"
+bash_it_git="Bash-it/bash-it"
+bash_it_branch="master"
 bash_it_location="${HOME}/.bash_it"
 bash_it_clone="$git_command clone --depth=1 --branch=${bash_it_branch} https://github.com/$bash_it_git.git ${bash_it_location}"
 bash_it_install="${HOME}/.bash_it/install.sh --silent --no-modify-config"
