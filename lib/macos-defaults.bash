@@ -402,6 +402,7 @@ defaults write com.apple.dock showhidden -bool true
 
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock tilesize -float 24
 
 # Disable the Launchpad gesture (pinch with thumb and three fingers)
 #defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
@@ -624,6 +625,50 @@ defaults write com.apple.Terminal ShowLineMarks -int 0
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
+# set the terminal to reuse the same session on new tabs
+/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Custom Directory' Recycle" ~/Library/Preferences/com.googlecode.iTerm2.plist
+
+# Set font to Menlo Regular 18px
+/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Normal Font' Menlo-Regular 18" ~/Library/Preferences/com.googlecode.iTerm2.plist
+/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Non Ascii Font' Menlo-Regular 18" ~/Library/Preferences/com.googlecode.iTerm2.plist
+
+# Unlimited Scrollback
+/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Unlimited Scrollback' true" ~/Library/Preferences/com.googlecode.iTerm2.plist
+
+# Mute bell
+/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Silence Bell' true" ~/Library/Preferences/com.googlecode.iTerm2.plist
+
+# Install themes
+mkdir -p ~/.dotfiles/iterm2
+curl https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors >> ~/.dotfiles/iterm2/Solarized\ Dark.itermcolors
+/usr/libexec/PlistBuddy -c "Add 'Custom Color Presets':'Solarized Dark' dict" ~/Library/Preferences/com.googlecode.iTerm2.plist
+/usr/libexec/PlistBuddy -c "Merge '$HOME/.dotfiles/iterm2/Solarized Dark.itermcolors' 'Custom Color Presets':'Solarized Dark'" ~/Library/Preferences/com.googlecode.iTerm2.plist
+
+curl https://raw.githubusercontent.com/martinlindhe/base16-iterm2/master/itermcolors/base16-classic-dark.itermcolors >> ~/.dotfiles/iterm2/Base16\ Chalk\ Dark.itermcolors
+/usr/libexec/PlistBuddy -c "Add 'Custom Color Presets':'Base16 Chalk Dark' dict" ~/Library/Preferences/com.googlecode.iTerm2.plist
+/usr/libexec/PlistBuddy -c "Merge '$HOME/.dotfiles/iterm2/Base16\ Chalk\ Dark.itermcolors' 'Custom Color Presets':'Base16 Chalk Dark'" ~/Library/Preferences/com.googlecode.iTerm2.plist
+
+# Apply Solarized Theme in default profile
+for color in \
+  "Ansi 0 Color" "Ansi 1 Color" "Ansi 2 Color" "Ansi 3 Color" "Ansi 4 Color" \
+  "Ansi 5 Color" "Ansi 6 Color" "Ansi 7 Color" "Ansi 8 Color" "Ansi 9 Color" \
+  "Ansi 10 Color" "Ansi 11 Color" "Ansi 12 Color" "Ansi 13 Color" "Ansi 14 Color" \
+  "Ansi 15 Color" "Background Color" "Bold Color" "Cursor Color" "Cursor Text Color" \
+  "Foreground Color" "Selected Text Color" "Selection Color"; do
+
+  /usr/libexec/PlistBuddy -c "Delete :'New Bookmarks':0:'$color'" ~/Library/Preferences/com.googlecode.iterm2.plist
+done
+/usr/libexec/PlistBuddy -c "Merge '$HOME/.dotfiles/iterm2/Base16 Chalk Dark.itermcolors' 'New Bookmarks':0" ~/Library/Preferences/com.googlecode.iterm2.plist
+
+
+# Caffeine
+defaults write com.lightheadsw.Caffeine.plist "DefaultDuration" -int 60
+defaults write com.lightheadsw.Caffeine.plist "SuppressLaunchMessage" -bool true
+
+# Add shortcut to Dock
+defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/iTerm.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+
+
 ###############################################################################
 # Time Machine                                                                #
 ###############################################################################
@@ -763,6 +808,11 @@ defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault
 defaults write com.operasoftware.Opera PMPrintingExpandedStateForPrint2 -boolean true
 defaults write com.operasoftware.OperaDeveloper PMPrintingExpandedStateForPrint2 -boolean true
 
+###############################################################################
+# Repair icons
+###############################################################################
+
+rm ~/Library/Preferences/com.apple.dock.plist
 
 ###############################################################################
 # Kill affected applications                                                  #
