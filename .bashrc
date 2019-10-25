@@ -22,3 +22,6 @@ export LANG="$LC_ALL"
 export GPG_TTY=$(tty)
 
 export EDITOR="/usr/local/bin/atom -nw"
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

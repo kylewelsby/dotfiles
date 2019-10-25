@@ -30,6 +30,7 @@ ruby-build
 ssh-copy-id
 gpg
 watchman
+yarn
 "
 
 CASK_PROGRAMS="
@@ -53,7 +54,6 @@ iterm2
 java
 keybase
 krisp
-klokki
 music-manager
 muzzle
 numi
@@ -69,7 +69,6 @@ tower
 transmit
 whatsapp
 yakyak
-yarn
 "
 
 APP_STORE_PROGRAMS="
@@ -127,6 +126,11 @@ alias-completion
 ruby
 xterm
 rbenv
+"
+
+GEM_RUBY_MODULES="
+bundler
+rubocop
 "
 
 enable_bash_it=true
