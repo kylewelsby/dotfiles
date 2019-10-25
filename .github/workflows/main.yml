@@ -1,0 +1,15 @@
+name: Test
+
+on: push
+
+jobs:
+  build:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS-10.13, macOS-10.14] 
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install
+        run: ./install.sh --no-app-store --no-projects
