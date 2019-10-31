@@ -50,8 +50,9 @@ google-photos-backup-and-sync
 gpg-suite
 grammarly
 imageoptim
+intel-power-gadget
+istat-menus
 iterm2
-java
 keybase
 krisp
 music-manager
@@ -63,6 +64,7 @@ rocket
 sketch
 skype
 spectacle
+spotify
 telegram
 the-unarchiver
 tower
