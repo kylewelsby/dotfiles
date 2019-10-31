@@ -50,7 +50,6 @@ google-photos-backup-and-sync
 gpg-suite
 grammarly
 imageoptim
-intel-power-gadget
 istat-menus
 iterm2
 keybase
