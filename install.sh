@@ -38,13 +38,13 @@ CASK_PROGRAMS="
 adobe-creative-cloud
 aerial
 alfred
-atom
 bartender
 caffeine
 cleanmymac
 dropbox
 evernote
 flux
+folx
 google-chrome
 google-photos-backup-and-sync
 gpg-suite
@@ -69,7 +69,7 @@ the-unarchiver
 tower
 transmit
 whatsapp
-yakyak
+visual-studio-code
 "
 
 APP_STORE_PROGRAMS="
@@ -83,9 +83,9 @@ NPM_MODULES="
 @vue/cli
 gitignorer
 outdated
-serverless
 standard
 firebase-tools
+jest
 "
 
 APM_MODULES="
@@ -139,8 +139,8 @@ enable_homebrew=true
 enable_app_store=true
 enable_brew_cask=true
 enable_dot_files=true
-enable_mac_defaults=true
-enable_apm=true
+enable_mac_defaults=false
+enable_apm=false
 enable_npm=true
 enable_projects=true
 
