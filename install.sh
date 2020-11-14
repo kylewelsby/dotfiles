@@ -36,15 +36,12 @@ yarn
 CASK_PROGRAMS="
 1password
 adobe-creative-cloud
-aerial
 alfred
 bartender
 caffeine
 cleanmymac
 dropbox
 evernote
-flux
-folx
 google-chrome
 google-photos-backup-and-sync
 gpg-suite
@@ -54,15 +51,13 @@ istat-menus
 iterm2
 keybase
 krisp
-music-manager
 muzzle
 numi
-postman
+rectangle
 rescuetime
 rocket
 sketch
 skype
-spectacle
 spotify
 telegram
 the-unarchiver
@@ -86,21 +81,6 @@ outdated
 standard
 firebase-tools
 jest
-"
-
-APM_MODULES="
-emmet
-language-gherkin
-language-graphql
-language-hugo
-language-markdown
-language-vue
-linter
-linter-js-standard
-linter-ui-default
-pigments
-sort-lines
-standard-formatter
 "
 
 BASH_IT_ALIAS="
@@ -165,7 +145,6 @@ function show_usage() {
   echo "--no-brew-cask (-c): Disable Brew Cask Applications"
   echo "--no-modify-config (-f): Disable copying of config files"
   echo "--no-mac-defaults (-d): Disable default mac settings"
-  echo "--no-apm (-a): Disable Atom.io package manager"
   echo "--no-npm (-n): Disable Node package manager"
   echo "--no-bash-it (-i): Disable Bash.it"
   echo "--no-projects (-p): Disable git checkout for projects"
@@ -184,7 +163,6 @@ for param in "$@"; do
     "--no-brew-cask")       set -- "$@" "-c" ;;
     "--no-modify-config")   set -- "$@" "-f" ;;
     "--no-mac-defaults")    set -- "$@" "-d" ;;
-    "--no-apm")             set -- "$@" "-a" ;;
     "--no-npm")             set -- "$@" "-n" ;;
     "--no-projects")             set -- "$@" "-p" ;;
     "--dry-run")            set -- "$@" "-r" ;;
