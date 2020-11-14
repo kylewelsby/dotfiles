@@ -35,7 +35,7 @@ source ~/.bash_it/lib/utilities.bash
 cite _about _param _example _group _author _version
 source ~/.bash_it/lib/helpers.bash
 
-run "_bash-it-version"
+# run "_bash-it-version"
 
 run "bash-it enable alias ${BASH_IT_ALIAS}"
 run "bash-it enable completion ${BASH_IT_COMPLETIONS}"
