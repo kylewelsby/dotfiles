@@ -133,6 +133,7 @@ SCRIPT_PATH="`dirname \"$0\"`"
 
 # Abort on error
 set -e
+echo "Shell is $SHELL"
 source ./lib/heleprs.bash
 
 function show_usage() {
@@ -150,8 +151,6 @@ function show_usage() {
   echo "--no-projects (-p): Disable git checkout for projects"
   exit 0;
 }
-
-
 
 for param in "$@"; do
   shift

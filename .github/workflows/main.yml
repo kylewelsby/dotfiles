@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install
-        run: ./install.sh --no-app-store --no-projects
+        run: ./install.sh --no-app-store --no-projects --no-bash-it
