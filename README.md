@@ -11,7 +11,7 @@ Automation install script inspired by [Jason Yu](https://github.com/ycmjason/dot
 ## 🎲 Installation
 
     git clone --depth=1 https://github.com/kylewelsby/dotfiles ~/.dotfiles
-    ~/.dotfiles/install.sh
+    ~/.dotfiles/install-mac.sh
 
 ## 🛠 Useage
 
