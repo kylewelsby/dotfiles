@@ -1,7 +1,7 @@
 [user]
   name = Kyle Welsby
   email = kyle@mekyle.com
-  signingkey = C35CD0258F1362121AE40479AEE59E1B8CCD1C8D
+  signingkey = AEE59E1B8CCD1C8D
 [commit]
   gpgsign = true
 [alias]
