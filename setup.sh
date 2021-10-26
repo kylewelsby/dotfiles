@@ -8,3 +8,4 @@ git config --global user.email kyle.welsby@shopify.com
 git config --global user.signingkey AEE59E1B8CCD1C8D
 
 
+gpgconf --launch dirmngr
