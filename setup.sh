@@ -9,3 +9,8 @@ git config --global user.signingkey 8CCD1C8D
 
 
 gpgconf --launch dirmngr
+
+alias dt="dev test --include-branch-commits"
+alias dr="dev style --include-branch-commits"
+alias ds="./bin/srb typecheck"
+alias da="ds ; dr ; dt"
