@@ -5,8 +5,8 @@ on: push
 jobs:
   build:
     name: Test
-    runs-on: macOS-10.15
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Install
-        run: ./install.sh --no-app-store --no-projects --no-bash-it
+        run: ./setup.sh | grep "Kyle Welsby's dotfiles Installed"
