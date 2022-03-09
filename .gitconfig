@@ -1,25 +1,24 @@
 [user]
-  name = Kyle Welsby
-  email = kyle@mekyle.com
-  signingkey = AEE59E1B8CCD1C8D
+	name = Kyle Welsby
+	email = kyle@mekyle.com
 [commit]
-  gpgsign = true
+	gpgsign = true
 [alias]
-  ci = commit
-  st = status
-  br = branch
-  co = checkout
-  df = diff
-  pf = push --force-with-lease
-  lg = log -p
-  who = shortlog -s --
-  track = !sh -c 'git branch --track "$1" "$0/$1" && git checkout "$1"' # git track origin branch <-- remotes/origin/branch
-  l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+	ci = commit
+	st = status
+	br = branch
+	co = checkout
+	df = diff
+	pf = push --force-with-lease
+	lg = log -p
+	who = shortlog -s --
+	track = !sh -c 'git branch --track "$1" "$0/$1" && git checkout "$1"' # git track origin branch <-- remotes/origin/branch
+	l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 [push]
-  default = current
+ 	default = current
 [fetch]
-  prune = true
+ 	prune = true
 [color]
-  ui = auto
+	ui = auto
 [gpg]
 	program = /usr/local/bin/gpg
