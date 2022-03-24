@@ -1,6 +1,8 @@
 [user]
 	name = Kyle Welsby
 	email = kyle@mekyle.com
+[core]
+	editor = code --wait
 [commit]
 	gpgsign = true
 [alias]
@@ -16,6 +18,8 @@
 	l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
 [push]
  	default = current
+[pull]
+	ff = only
 [fetch]
  	prune = true
 [color]
