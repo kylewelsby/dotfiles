@@ -2,7 +2,6 @@ ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 
 git config --global --unset gpg.program
 git config --global user.email kyle.welsby@shopify.com
-git config --global user.signingkey D69BD90129FFC2A75D0D2067E1BFC46736BEC2DE
 
 gpgconf --launch dirmngr
 
