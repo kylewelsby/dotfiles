@@ -6,7 +6,7 @@ git config --global user.email kyle.welsby@shopify.com
 
 gpgconf --launch dirmngr
 
-curl -sS https://starship.rs/install.sh | sh
+brew install starship
 
 echo -n "export GPG_TTY=$(tty)" >> ~/.zshrc
 echo -n "eval \"$(starship init zsh)\"" >> ~/.zshrc
