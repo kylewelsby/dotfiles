@@ -8,8 +8,8 @@ gpgconf --launch dirmngr
 
 snap install starship
 
-echo -n "export GPG_TTY=$(tty)" >> ~/.zshrc
-echo -n "eval \"$(starship init zsh)\"" >> ~/.zshrc
+echo "export GPG_TTY=$(tty)" >> ~/.zshrc
+echo "eval \"$(starship init zsh)\"" >> ~/.zshrc
 
 alias dt="dev test --include-branch-commits"
 alias dr="dev style --include-branch-commits"
